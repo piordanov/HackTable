@@ -3,9 +3,13 @@
 const express = require('express');
 const { createServer } = require('http');
 // const WebSocket = require('ws');
-
-const app = express();
-const server = createServer(app);
+// 
+const server = createServer(function (req, res) {
+	handler(req, res, function (err) {
+		res.statusCode = 404;
+		res.end('no such location')
+	});
+});
 // const wss = new WebSocket.Server({ server });
 
 // tell the server where our webpage files are
@@ -28,18 +32,27 @@ O, X, X, X, X, X, X, O,
 O, O, O, O, O, O, O, O
 ];
 
-sense.setPixels(leds);
+// sense.setPixels(leds);
 
 function buildHeatMap() {
 	// fetch commits, build heatmap like leds above
 	sense.setPixels(leds);
 }
 
-app.post('/payload', function (req, res) {
-	console.log(req);
-	console.log(res);
-	console.log(req.body.pusher.name + ' just pushed to ' + req.body.repository.name);
-	buildHeatMap();
+const createHandler = require('github-webhook-handler')
+const handler = createHandler({ path: '/payload', secret: 'mysecret'});
+
+//app.post('/payload', function (req, res) {
+//	console.log(req.body);
+//	
+//	console.log(req.body.pusher.name + ' just pushed to ' + req.body.repository.name);
+//	buildHeatMap();
+//});
+
+handler.on('push', function (event) {
+  console.log('Received a push event for %s to %s',
+    event.payload.repository.name,
+    event.payload.pusher.name)
 });
 
 //set up the server, listening on port 8080

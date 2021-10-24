@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "express": "^4.17.1",
+    "github-webhook-handler": "^1.0.0",
     "http": "^0.0.1-security",
     "sense-hat-led": "^1.2.0"
   }
