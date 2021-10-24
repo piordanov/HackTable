@@ -6,7 +6,9 @@ This server acts a proof of concept of displaying a commit heat map that updates
 
 Clone the project onto a raspberry pi with a SenseHat (follow instructions for setup found in the [Hacking the Hack Guide](https://github.com/augustluhrs/HackTheHack_RaspiGuide).
 
-Run `npm install` to setup the webserver.
+Run `npm install` to setup the webserver. 
+
+`sudo node webServer.js` to start the server.
 
 Also, will need to set up a localtunnel for the webhook to get a payload URL, this [guide](https://thisdavej.com/make-your-raspberry-pi-web-server-available-on-the-internet-with-node-js/) can assist.
 
