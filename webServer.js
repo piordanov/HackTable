@@ -46,6 +46,7 @@ async function buildHeatMap() {
 			leds[index] = X;
 		}
 	}
+	console.log(leds);
 	sense.setPixels(leds);
 
 }
