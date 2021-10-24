@@ -36,6 +36,8 @@ function buildHeatMap() {
 }
 
 app.post('/payload', function (req, res) {
+	console.log(req);
+	console.log(res);
 	console.log(req.body.pusher.name + ' just pushed to ' + req.body.repository.name);
 	buildHeatMap();
 });
