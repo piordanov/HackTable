@@ -30,11 +30,18 @@ O, O, O, O, O, O, O, O
 
 sense.setPixels(leds);
 
+function buildHeatMap() {
+	// fetch commits, build heatmap like leds above
+	sense.setPixels(leds);
+}
+
 app.post('/payload', function (req, res) {
 	console.log(req.body.pusher.name + ' just pushed to ' + req.body.repository.name);
+	buildHeatMap();
 });
 
 //set up the server, listening on port 8080
 server.listen(8080, () => {
 	console.log('Server listening on 8080');
+	buildHeatMap();
 });
